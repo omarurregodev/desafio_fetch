@@ -13,7 +13,7 @@ let btnDeleteUserModal = document.getElementById("btnDeleteUserModal");
 
 // API PARA MOSTRAR EL PRECIO DEL BTC EN TIEMPO REAL
 
-$(document).ready(function() {
+$(function() {
 	fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
 	.then((response) => response.json())
 	.then((data) => {
@@ -25,10 +25,10 @@ $(document).ready(function() {
 });
 
 // AGREGO LOS LISTENERS DE LOS BOTONES
-$(btnAdd).click(function(){
+$(btnAdd).on("click",function(){
 	newUser();
 });
-$(btnFilter).click(function(){
+$(btnFilter).on("click",function(){
 	filterAZ();
 });
 //btnAdd.addEventListener("click", newUser);
@@ -40,20 +40,20 @@ busquedaField.addEventListener("keypress", (event)=> {
 		buscar();
 	}
 });
-$(busquedaField).change(function(){
+$(busquedaField).on("change", function(){
 	buscar();
 });
 //busquedaField.addEventListener("change", buscar);
 
 //AQUI TENGO EL LISTENER PARA VALIDAR LA CONFIRMACION DE DELETE USER MODAL
-$(btnDeleteUserModal).click(function(){
+$(btnDeleteUserModal).on("click",function(){
 	deleteUserConfirm();
 });
 //btnDeleteUserModal.addEventListener("click", deleteUserConfirm);
 
 // AQUI ESTOY CARGANDO LA INFORMACION DEL LOCALSTORAGE EN EL ARRAY, DEBO DE HACER ESTO EN EL INICIO SIEMPRE
 
-$(document).ready(function(){
+$(function(){
     //código jQuery adicional
 	onloadLocalstorage();
 });
