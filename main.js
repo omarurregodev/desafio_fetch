@@ -1,12 +1,28 @@
 //DECLARO EL ARRAY QUE VOY A USAR
 let userArray = [];
 
+let BTC_price = 0;
+
 let btnAdd = document.getElementById("btnUserAdd");
 let btnFilter = document.getElementById("btnFilter");
 let busquedaField = document.getElementById("busqueda");
 let btnDeleteUserModal = document.getElementById("btnDeleteUserModal");
 
 //let graphicArray = [];
+
+
+// API PARA MOSTRAR EL PRECIO DEL BTC EN TIEMPO REAL
+
+$(document).ready(function() {
+	fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
+	.then((response) => response.json())
+	.then((data) => {
+		BTC_price = data.bpi.USD.rate;
+		console.log('esto es data: '+BTC_price)
+		document.getElementById("BTC_current_price").innerHTML = "<span>US$ </span>" + BTC_price;
+		})
+
+});
 
 // AGREGO LOS LISTENERS DE LOS BOTONES
 $(btnAdd).click(function(){
