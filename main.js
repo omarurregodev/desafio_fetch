@@ -101,7 +101,6 @@ function newUser() {
 		graficar(userArray);
 		//console.log(userArray);
 
-		
 	} else {
 		nameInput = document.getElementById("name").value;
 		filtro = userArray.filter(user => user.name == nameInput); //AQUI ESTOY HACIENDO EL FILTRO PARA VER SI EL USUARIO QUE SE ESTA DIGITANDO YA ESTA CREADO
@@ -137,7 +136,7 @@ function graficar(usuarios){
 	perfil='';
 
 	for (let i = 0; i < usuarios.length; i++) {
-		perfil = perfil + "<div class='card mx-2 p-2' style='width: 18rem;'> <div class='card-body'> <h5 class='card-title'>"+usuarios[i].name+"</h5> <p class='card-text'>"+usuarios[i].age+"</p> <p class='card-text'>"+usuarios[i].career+"</p> <p class='card-text'>"+usuarios[i].about+"</p> </div> <div class='card-body'> <button class='btn btn-danger' onClick='deleteUser("+i+");' data-bs-toggle='modal' data-bs-target='#deleteModal'><i class='fa-solid fa-user-xmark'></i>  Eliminar</button></button></div> </div>";
+		perfil = perfil + "<div class='card mx-2 p-2' style='width: 18rem;'> <div class='card-body'> <h5 class='card-title'>"+usuarios[i].name+"</h5> <p class='card-text'>"+usuarios[i].age+"</p> <p class='card-text'>"+usuarios[i].career+"</p> <p class='card-text'>"+usuarios[i].about+"</p> </div> <div class='card-body'> <button class='btn m-2 btn-danger' onClick='deleteUser("+i+");' data-bs-toggle='modal' data-bs-target='#deleteModal'><i class='fa-solid fa-user-xmark'></i>  Eliminar</button></button><button class='btn m-2 btn-primary' onClick='modifyUser("+i+");' data-bs-toggle='modal' data-bs-target='#modifyModal'><i class='fa-solid fa-user-xmark'></i>  Modificar</button></button></div> </div>";
 	} 
 	//Renderizo todo apenas acabe
 	html_perfil.innerHTML = perfil;
