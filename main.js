@@ -82,27 +82,51 @@ function newUser() {
 		
 	if (document.getElementById("name").value == '' || document.getElementById("age").value == '' || document.getElementById("career").value == '' || document.getElementById("about").value == '') {
 		alert('Todos los campos deben de estar llenos');
+	} else if(userArray.length == 0){
+		let user = {
+			name: document.getElementById("name").value,
+			age: document.getElementById("age").value,
+			career: document.getElementById("career").value,
+			about: document.getElementById("about").value
+		}
+		userArray.push(user);
+		//graficar(userArray);
+
+
+		// AQUI TENGO QUE EXPORTAR LA INFO AL LOCAL STORAGE - Y DEBO DE ENVIAR ESE ARRAY A GRAFICAR
+		localStorage.setItem('usuarios', JSON.stringify(userArray));
+		//userArray = localStorage.getItem('usuarios');  ESTO ES INNECESARIO
+		//userArray = JSON.parse(userArray);  ESTO ES INNECESARIO
+
+		graficar(userArray);
+		//console.log(userArray);
+
+		
 	} else {
+		nameInput = document.getElementById("name").value;
+		filtro = userArray.filter(user => user.name == nameInput); //AQUI ESTOY HACIENDO EL FILTRO PARA VER SI EL USUARIO QUE SE ESTA DIGITANDO YA ESTA CREADO
+		if (filtro.length == 0) {
 			let user = {
-					name: document.getElementById("name").value,
-					age: document.getElementById("age").value,
-					career: document.getElementById("career").value,
-					about: document.getElementById("about").value
+				name: document.getElementById("name").value,
+				age: document.getElementById("age").value,
+				career: document.getElementById("career").value,
+				about: document.getElementById("about").value
 			}
 			userArray.push(user);
 			//graficar(userArray);
-
-
+	
+	
 			// AQUI TENGO QUE EXPORTAR LA INFO AL LOCAL STORAGE - Y DEBO DE ENVIAR ESE ARRAY A GRAFICAR
 			localStorage.setItem('usuarios', JSON.stringify(userArray));
 			//userArray = localStorage.getItem('usuarios');  ESTO ES INNECESARIO
 			//userArray = JSON.parse(userArray);  ESTO ES INNECESARIO
-
+	
 			graficar(userArray);
-
 			//console.log(userArray);
-			
-	}	
+		} else {
+			alert('El usuario ya se encuentra creado');
+		}
+	}
 }
 
 function graficar(usuarios){
